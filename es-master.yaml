@@ -35,6 +35,9 @@ spec:
               - SYS_RESOURCE
         image: quay.io/pires/docker-elasticsearch-kubernetes:5.3.0
         imagePullPolicy: Always
+        envFrom:
+          - configMapRef:
+              name: es-config
         env:
         - name: NAMESPACE
           valueFrom:
@@ -44,8 +47,6 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        - name: "CLUSTER_NAME"
-          value: "myesdb"
         - name: "NUMBER_OF_MASTERS"
           value: "2"
         - name: NODE_MASTER
@@ -56,12 +57,11 @@ spec:
           value: "false"
         - name: HTTP_ENABLE
           value: "false"
-        - name: "ES_JAVA_OPTS"
-          value: "-Xms256m -Xmx256m"
+
         ports:
-        - containerPort: 9300
-          name: transport
-          protocol: TCP
+          - containerPort: 9300
+            name: transport
+            protocol: TCP
         volumeMounts:
         - name: storage
           mountPath: /data

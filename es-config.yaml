@@ -1,0 +1,11 @@
+---
+
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: es-config
+data:
+  CLUSTER_NAME: sandbox-logs
+  ES_JAVA_OPTS: "-Xms256m -Xmx256m"
+  es_test: 'false'
+

@@ -44,16 +44,15 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        - name: "CLUSTER_NAME"
-          value: "myesdb"
         - name: NODE_MASTER
           value: "false"
         - name: NODE_DATA
           value: "false"
         - name: HTTP_ENABLE
           value: "true"
-        - name: "ES_JAVA_OPTS"
-          value: "-Xms256m -Xmx256m"
+        envFrom:
+          - configMapRef:
+              name: es-config
         ports:
         - containerPort: 9200
           name: http
