@@ -10,7 +10,7 @@ spec:
         spec:
           containers:
           - name: curator
-            image: bobrik/curator
+            image: bobrik/curator:5.0.1
             args: ["--config", "/etc/config/config.yml", "/etc/config/action_file.yml"]
             volumeMounts:
               - name: config-volume
